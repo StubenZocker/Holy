@@ -28,6 +28,7 @@ struct AddEditFlavourView: View {
     @State private var imageData: Data?
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var showValidationAlert = false
+    @State private var showingCamera = false
 
     var body: some View {
         NavigationStack {
@@ -113,12 +114,17 @@ struct AddEditFlavourView: View {
                     }
             }
 
-            HStack {
+            HStack(spacing: 16) {
                 PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                    Label(
-                        imageData == nil ? "Foto wählen" : "Foto ändern",
-                        systemImage: "photo"
-                    )
+                    Label("Mediathek", systemImage: "photo")
+                }
+
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    Button {
+                        showingCamera = true
+                    } label: {
+                        Label("Kamera", systemImage: "camera")
+                    }
                 }
 
                 if imageData != nil {
@@ -134,6 +140,10 @@ struct AddEditFlavourView: View {
             .font(.subheadline)
         }
         .padding(.vertical, 4)
+        .fullScreenCover(isPresented: $showingCamera) {
+            CameraPicker(imageData: $imageData)
+                .ignoresSafeArea()
+        }
     }
 
     private func loadIfEditing() {

@@ -15,6 +15,7 @@
 		A10000000000000000000006 /* FlavourListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* FlavourListView.swift */; };
 		A10000000000000000000007 /* FlavourDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* FlavourDetailView.swift */; };
 		A10000000000000000000008 /* AddEditFlavourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* AddEditFlavourView.swift */; };
+		A1000000000000000000000A /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* CameraPicker.swift */; };
 		A10000000000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		A20000000000000000000006 /* FlavourListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavourListView.swift; sourceTree = "<group>"; };
 		A20000000000000000000007 /* FlavourDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavourDetailView.swift; sourceTree = "<group>"; };
 		A20000000000000000000008 /* AddEditFlavourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditFlavourView.swift; sourceTree = "<group>"; };
+		A2000000000000000000000C /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		A20000000000000000000009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2000000000000000000000A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2000000000000000000000B /* HolySorten.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolySorten.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 				A20000000000000000000006 /* FlavourListView.swift */,
 				A20000000000000000000007 /* FlavourDetailView.swift */,
 				A20000000000000000000008 /* AddEditFlavourView.swift */,
+				A2000000000000000000000C /* CameraPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				A10000000000000000000006 /* FlavourListView.swift in Sources */,
 				A10000000000000000000007 /* FlavourDetailView.swift in Sources */,
 				A10000000000000000000008 /* AddEditFlavourView.swift in Sources */,
+				A1000000000000000000000A /* CameraPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

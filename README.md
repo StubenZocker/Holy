@@ -6,7 +6,7 @@ Kleine iPhone-App (SwiftUI) zum Sammeln, Fotografieren und Bewerten von [HOLY En
 
 - **Katalog vorausgefüllt** mit aktuellen HOLY Energy®-Sorten von holy.com
 - **Eigene Sorten hinzufügen** (Name, Geschmack, Notizen)
-- **Fotos** aus der Mediathek hinzufügen oder ändern
+- **Fotos** aus der Mediathek oder per Kamera hinzufügen
 - **Sterne-Bewertung** (1–5), direkt in der Detailansicht oder beim Bearbeiten
 - **Suche, Sortierung & Filter** (Name, Bewertung, zuletzt geändert, nur bewertete)
 - **Lokale Speicherung** mit SwiftData (bleibt auf dem Gerät)
