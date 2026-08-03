@@ -25,6 +25,7 @@ struct AddEditFlavourView: View {
     @State private var tasteNotes: String = ""
     @State private var notes: String = ""
     @State private var rating: Int = 0
+    @State private var isLimited = false
     @State private var imageData: Data?
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var showValidationAlert = false
@@ -46,6 +47,15 @@ struct AddEditFlavourView: View {
                         TextField("Geschmack (z. B. Mango, Kiwi)", text: $tasteNotes)
                         TextField("Notizen", text: $notes, axis: .vertical)
                             .lineLimit(3...6)
+                        Toggle(isOn: $isLimited) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Limitiert")
+                                Text("Als limitierte Edition markieren")
+                                    .font(.caption)
+                                    .foregroundStyle(HolyTheme.textSecondary)
+                            }
+                        }
+                        .tint(Color.holyAccent)
                     }
                     .listRowBackground(Color.holySurface.opacity(0.7))
 
@@ -157,6 +167,7 @@ struct AddEditFlavourView: View {
         tasteNotes = flavour.tasteNotes
         notes = flavour.notes
         rating = flavour.rating
+        isLimited = flavour.isLimited
         imageData = flavour.imageData
     }
 
@@ -198,7 +209,8 @@ struct AddEditFlavourView: View {
                 rating: rating,
                 notes: notes.trimmingCharacters(in: .whitespacesAndNewlines),
                 imageData: imageData,
-                isCustom: true
+                isCustom: true,
+                isLimited: isLimited
             )
             modelContext.insert(flavour)
         case .edit(let flavour):
@@ -206,6 +218,7 @@ struct AddEditFlavourView: View {
             flavour.tasteNotes = tasteNotes.trimmingCharacters(in: .whitespacesAndNewlines)
             flavour.notes = notes.trimmingCharacters(in: .whitespacesAndNewlines)
             flavour.rating = rating
+            flavour.isLimited = isLimited
             flavour.imageData = imageData
             flavour.updatedAt = Date()
         }
