@@ -60,10 +60,6 @@ struct FlavourListView: View {
         }
     }
 
-    private var ratedCount: Int {
-        flavours.filter(\.hasRating).count
-    }
-
     var body: some View {
         NavigationStack(path: $path) {
             ZStack {
@@ -73,7 +69,6 @@ struct FlavourListView: View {
                     emptyState
                 } else {
                     List {
-                        headerSection
                         ForEach(filtered) { flavour in
                             NavigationLink(value: flavour.id) {
                                 FlavourRowView(flavour: flavour)
@@ -132,21 +127,6 @@ struct FlavourListView: View {
         }
         .preferredColorScheme(.light)
         .tint(Color.holyAccent)
-    }
-
-    private var headerSection: some View {
-        Section {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Deine HOLY Energy® Bewertungen")
-                    .font(.headline)
-                    .foregroundStyle(HolyTheme.textPrimary)
-                Text("\(ratedCount) von \(flavours.count) Sorten bewertet")
-                    .font(.subheadline)
-                    .foregroundStyle(HolyTheme.textSecondary)
-            }
-            .padding(.vertical, 4)
-            .listRowBackground(Color.clear)
-        }
     }
 
     private var emptyState: some View {
