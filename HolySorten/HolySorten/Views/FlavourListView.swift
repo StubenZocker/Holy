@@ -60,10 +60,6 @@ struct FlavourListView: View {
         }
     }
 
-    private var ratedCount: Int {
-        flavours.filter(\.hasRating).count
-    }
-
     var body: some View {
         NavigationStack(path: $path) {
             ZStack {
@@ -73,13 +69,12 @@ struct FlavourListView: View {
                     emptyState
                 } else {
                     List {
-                        headerSection
                         ForEach(filtered) { flavour in
                             NavigationLink(value: flavour.id) {
                                 FlavourRowView(flavour: flavour)
                             }
-                            .listRowBackground(Color.holySurface.opacity(0.55))
-                            .listRowSeparatorTint(HolyTheme.muted.opacity(0.35))
+                            .listRowBackground(Color.holySurface.opacity(0.72))
+                            .listRowSeparatorTint(HolyTheme.muted.opacity(0.25))
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     delete(flavour)
@@ -95,7 +90,7 @@ struct FlavourListView: View {
             }
             .navigationTitle("Holy Sorten")
             .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarColorScheme(.light, for: .navigationBar)
             .searchable(text: $searchText, prompt: "Sorte suchen…")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -130,23 +125,8 @@ struct FlavourListView: View {
                 AddEditFlavourView(mode: .add)
             }
         }
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
         .tint(Color.holyAccent)
-    }
-
-    private var headerSection: some View {
-        Section {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Deine HOLY Energy® Bewertungen")
-                    .font(.headline)
-                    .foregroundStyle(HolyTheme.textPrimary)
-                Text("\(ratedCount) von \(flavours.count) Sorten bewertet")
-                    .font(.subheadline)
-                    .foregroundStyle(HolyTheme.textSecondary)
-            }
-            .padding(.vertical, 4)
-            .listRowBackground(Color.clear)
-        }
     }
 
     private var emptyState: some View {
@@ -217,10 +197,10 @@ struct FlavourThumbnail: View {
                     .scaledToFill()
             } else {
                 ZStack {
-                    Color.holySurface
+                    Color.holySurface.opacity(0.55)
                     Image(systemName: "cup.and.saucer.fill")
                         .font(.system(size: size * 0.35))
-                        .foregroundStyle(Color.holyAccent.opacity(0.7))
+                        .foregroundStyle(Color.holyAccent.opacity(0.75))
                 }
             }
         }
@@ -228,7 +208,7 @@ struct FlavourThumbnail: View {
         .clipShape(RoundedRectangle(cornerRadius: size * 0.18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: size * 0.18, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.08), lineWidth: 1)
+                .strokeBorder(Color.holyAccent.opacity(0.12), lineWidth: 1)
         }
     }
 }
