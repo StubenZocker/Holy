@@ -174,33 +174,36 @@ struct FlavourListView: View {
 struct FlavourRowView: View {
     let flavour: Flavour
 
-    var body: some View {
-        HStack(spacing: 14) {
-            FlavourThumbnail(imageData: flavour.imageData, size: 56)
+    private let imageSize: CGFloat = 96
 
-            VStack(alignment: .leading, spacing: 4) {
+    var body: some View {
+        HStack(alignment: .center, spacing: 16) {
+            FlavourThumbnail(imageData: flavour.imageData, size: imageSize)
+
+            VStack(alignment: .leading, spacing: 6) {
                 Text(flavour.name)
-                    .font(.headline)
+                    .font(.title3.weight(.semibold))
                     .foregroundStyle(HolyTheme.textPrimary)
-                    .lineLimit(1)
+                    .lineLimit(2)
 
                 if !flavour.tasteNotes.isEmpty {
                     Text(flavour.tasteNotes)
                         .font(.subheadline)
                         .foregroundStyle(HolyTheme.textSecondary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                 }
 
                 StarRatingDisplay(rating: flavour.rating)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
     }
 }
 
 struct FlavourThumbnail: View {
     let imageData: Data?
-    var size: CGFloat = 56
+    var size: CGFloat = 96
 
     var body: some View {
         Group {
@@ -218,9 +221,9 @@ struct FlavourThumbnail: View {
             }
         }
         .frame(width: size, height: size)
-        .clipShape(RoundedRectangle(cornerRadius: size * 0.22, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: size * 0.18, style: .continuous))
         .overlay {
-            RoundedRectangle(cornerRadius: size * 0.22, style: .continuous)
+            RoundedRectangle(cornerRadius: size * 0.18, style: .continuous)
                 .strokeBorder(Color.white.opacity(0.08), lineWidth: 1)
         }
     }
