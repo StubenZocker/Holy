@@ -84,6 +84,10 @@ struct AddEditFlavourView: View {
             .onChange(of: selectedPhoto) { _, newItem in
                 Task { await loadPhoto(from: newItem) }
             }
+            .fullScreenCover(isPresented: $showingCamera) {
+                CameraPicker(imageData: $imageData)
+                    .ignoresSafeArea()
+            }
         }
         .preferredColorScheme(.dark)
         .tint(Color.holyAccent)
@@ -105,7 +109,7 @@ struct AddEditFlavourView: View {
                     .frame(height: 140)
                     .overlay {
                         VStack(spacing: 8) {
-                            Image(systemName: "camera.fill")
+                            Image(systemName: "photo.on.rectangle")
                                 .font(.title2)
                             Text("Foto hinzufügen")
                                 .font(.subheadline)
@@ -114,36 +118,37 @@ struct AddEditFlavourView: View {
                     }
             }
 
-            HStack(spacing: 16) {
-                PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                    Label("Mediathek", systemImage: "photo")
-                }
-
-                if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    Button {
-                        showingCamera = true
-                    } label: {
-                        Label("Kamera", systemImage: "camera")
-                    }
-                }
-
-                if imageData != nil {
-                    Spacer()
-                    Button(role: .destructive) {
-                        imageData = nil
-                        selectedPhoto = nil
-                    } label: {
-                        Label("Entfernen", systemImage: "trash")
-                    }
-                }
+            // Getrennte Zeilen + borderless: verhindert, dass Form-Gesten
+            // Mediathek und Kamera gleichzeitig auslösen.
+            PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                Label("Aus Mediathek wählen", systemImage: "photo")
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .font(.subheadline)
+            .buttonStyle(.borderless)
+
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                Button {
+                    showingCamera = true
+                } label: {
+                    Label("Mit Kamera aufnehmen", systemImage: "camera")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .buttonStyle(.borderless)
+            }
+
+            if imageData != nil {
+                Button(role: .destructive) {
+                    imageData = nil
+                    selectedPhoto = nil
+                } label: {
+                    Label("Foto entfernen", systemImage: "trash")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .buttonStyle(.borderless)
+            }
         }
+        .font(.subheadline)
         .padding(.vertical, 4)
-        .fullScreenCover(isPresented: $showingCamera) {
-            CameraPicker(imageData: $imageData)
-                .ignoresSafeArea()
-        }
     }
 
     private func loadIfEditing() {
