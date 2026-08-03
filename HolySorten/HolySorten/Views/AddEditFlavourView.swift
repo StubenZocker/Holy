@@ -40,7 +40,7 @@ struct AddEditFlavourView: View {
                     Section("Foto") {
                         photoPicker
                     }
-                    .listRowBackground(Color.holySurface.opacity(0.7))
+                    .listRowBackground(Color.holySurface.opacity(0.78))
 
                     Section("Details") {
                         TextField("Name der Sorte", text: $name)
@@ -57,7 +57,7 @@ struct AddEditFlavourView: View {
                         }
                         .tint(Color.holyAccent)
                     }
-                    .listRowBackground(Color.holySurface.opacity(0.7))
+                    .listRowBackground(Color.holySurface.opacity(0.78))
 
                     Section("Bewertung") {
                         VStack(alignment: .leading, spacing: 12) {
@@ -68,13 +68,13 @@ struct AddEditFlavourView: View {
                         }
                         .padding(.vertical, 4)
                     }
-                    .listRowBackground(Color.holySurface.opacity(0.7))
+                    .listRowBackground(Color.holySurface.opacity(0.78))
                 }
                 .scrollContentBackground(.hidden)
             }
             .navigationTitle(mode.title)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarColorScheme(.light, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Abbrechen") { dismiss() }
@@ -99,7 +99,7 @@ struct AddEditFlavourView: View {
                     .ignoresSafeArea()
             }
         }
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
         .tint(Color.holyAccent)
     }
 
@@ -115,7 +115,7 @@ struct AddEditFlavourView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             } else {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(HolyTheme.backgroundBottom.opacity(0.5))
+                    .fill(HolyTheme.background.opacity(0.35))
                     .frame(height: 140)
                     .overlay {
                         VStack(spacing: 8) {

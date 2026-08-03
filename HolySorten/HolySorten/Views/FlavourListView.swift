@@ -78,8 +78,8 @@ struct FlavourListView: View {
                             NavigationLink(value: flavour.id) {
                                 FlavourRowView(flavour: flavour)
                             }
-                            .listRowBackground(Color.holySurface.opacity(0.55))
-                            .listRowSeparatorTint(HolyTheme.muted.opacity(0.35))
+                            .listRowBackground(Color.holySurface.opacity(0.72))
+                            .listRowSeparatorTint(HolyTheme.muted.opacity(0.25))
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     delete(flavour)
@@ -95,7 +95,7 @@ struct FlavourListView: View {
             }
             .navigationTitle("Holy Sorten")
             .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarColorScheme(.light, for: .navigationBar)
             .searchable(text: $searchText, prompt: "Sorte suchen…")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -130,7 +130,7 @@ struct FlavourListView: View {
                 AddEditFlavourView(mode: .add)
             }
         }
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(.light)
         .tint(Color.holyAccent)
     }
 
@@ -217,10 +217,10 @@ struct FlavourThumbnail: View {
                     .scaledToFill()
             } else {
                 ZStack {
-                    Color.holySurface
+                    Color.holySurface.opacity(0.55)
                     Image(systemName: "cup.and.saucer.fill")
                         .font(.system(size: size * 0.35))
-                        .foregroundStyle(Color.holyAccent.opacity(0.7))
+                        .foregroundStyle(Color.holyAccent.opacity(0.75))
                 }
             }
         }
@@ -228,7 +228,7 @@ struct FlavourThumbnail: View {
         .clipShape(RoundedRectangle(cornerRadius: size * 0.18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: size * 0.18, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.08), lineWidth: 1)
+                .strokeBorder(Color.holyAccent.opacity(0.12), lineWidth: 1)
         }
     }
 }

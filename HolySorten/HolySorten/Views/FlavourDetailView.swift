@@ -46,7 +46,7 @@ struct FlavourDetailView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarColorScheme(.light, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -96,16 +96,16 @@ struct FlavourDetailView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
                     .overlay {
                         RoundedRectangle(cornerRadius: 24, style: .continuous)
-                            .strokeBorder(Color.white.opacity(0.1), lineWidth: 1)
+                            .strokeBorder(Color.holyAccent.opacity(0.12), lineWidth: 1)
                     }
             } else {
                 ZStack {
                     RoundedRectangle(cornerRadius: 24, style: .continuous)
-                        .fill(Color.holySurface)
+                        .fill(Color.holySurface.opacity(0.72))
                     VStack(spacing: 10) {
                         Image(systemName: "photo.on.rectangle.angled")
                             .font(.system(size: 40))
-                            .foregroundStyle(Color.holyAccent.opacity(0.6))
+                            .foregroundStyle(Color.holyAccent.opacity(0.7))
                         Text("Noch kein Foto")
                             .font(.subheadline)
                             .foregroundStyle(HolyTheme.textSecondary)
@@ -137,7 +137,7 @@ struct FlavourDetailView: View {
         }
         .padding(18)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.holySurface.opacity(0.7), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(Color.holySurface.opacity(0.78), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
 
     private var notesSection: some View {
@@ -151,7 +151,7 @@ struct FlavourDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(18)
-        .background(Color.holySurface.opacity(0.7), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .background(Color.holySurface.opacity(0.78), in: RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
 
     private var metaSection: some View {
