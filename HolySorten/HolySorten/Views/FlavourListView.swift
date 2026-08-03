@@ -186,6 +186,10 @@ struct FlavourRowView: View {
                     .foregroundStyle(HolyTheme.textPrimary)
                     .lineLimit(2)
 
+                if flavour.isLimited {
+                    LimitedTag(compact: true)
+                }
+
                 if !flavour.tasteNotes.isEmpty {
                     Text(flavour.tasteNotes)
                         .font(.subheadline)

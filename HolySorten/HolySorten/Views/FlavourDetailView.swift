@@ -19,6 +19,10 @@ struct FlavourDetailView: View {
                     photoHeader
 
                     VStack(alignment: .leading, spacing: 8) {
+                        if flavour.isLimited {
+                            LimitedTag()
+                        }
+
                         Text(flavour.name)
                             .font(.system(.largeTitle, design: .rounded).weight(.bold))
                             .foregroundStyle(HolyTheme.textPrimary)
@@ -152,9 +156,19 @@ struct FlavourDetailView: View {
 
     private var metaSection: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(flavour.isCustom ? "Eigene Sorte" : "HOLY Katalog")
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(Color.holyAccent)
+            HStack(spacing: 8) {
+                Text(flavour.isCustom ? "Eigene Sorte" : "HOLY Katalog")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Color.holyAccent)
+
+                if flavour.isLimited {
+                    Text("·")
+                        .foregroundStyle(HolyTheme.muted)
+                    Text("Limitiert")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(Color.holyAccent)
+                }
+            }
             Text("Zuletzt geändert: \(flavour.updatedAt.formatted(date: .abbreviated, time: .shortened))")
                 .font(.caption)
                 .foregroundStyle(HolyTheme.muted)

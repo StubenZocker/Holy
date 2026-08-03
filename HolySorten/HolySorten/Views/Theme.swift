@@ -42,3 +42,20 @@ struct HolyBackground: View {
         }
     }
 }
+
+struct LimitedTag: View {
+    var compact: Bool = false
+
+    var body: some View {
+        Text("Limitiert")
+            .font(compact ? .caption2.weight(.bold) : .caption.weight(.bold))
+            .foregroundStyle(HolyTheme.backgroundBottom)
+            .padding(.horizontal, compact ? 7 : 9)
+            .padding(.vertical, compact ? 3 : 4)
+            .background(
+                Color.holyAccent,
+                in: RoundedRectangle(cornerRadius: compact ? 6 : 8, style: .continuous)
+            )
+            .accessibilityLabel("Limitierte Sorte")
+    }
+}

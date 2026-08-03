@@ -12,6 +12,7 @@ final class Flavour {
     var createdAt: Date
     var updatedAt: Date
     var isCustom: Bool
+    var isLimited: Bool = false
 
     init(
         name: String,
@@ -19,7 +20,8 @@ final class Flavour {
         rating: Int = 0,
         notes: String = "",
         imageData: Data? = nil,
-        isCustom: Bool = true
+        isCustom: Bool = true,
+        isLimited: Bool = false
     ) {
         self.id = UUID()
         self.name = name
@@ -30,6 +32,7 @@ final class Flavour {
         self.createdAt = Date()
         self.updatedAt = Date()
         self.isCustom = isCustom
+        self.isLimited = isLimited
     }
 
     var hasRating: Bool { rating > 0 }
